@@ -1,0 +1,7 @@
+data:
+  - name: 'temperature'
+  - name: 'humidity'
+  - name: 'moisture'
+  - name: 'light'
+results:
+  - enable: true # false by default | to see the results in web browser

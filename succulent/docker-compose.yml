@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  app:
+    image: codeberg.org/firefly-cpp/succulent:v3
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./run.py:/succulent-app/run.py
+      - ./configuration.yml:/succulent-app/configuration.yml
+    environment:
+      - GUNICORN_WORKERS=2

@@ -1,6 +1,6 @@
 # About
 
-This repository contains a collection of software codes for data collection using the LilyGO T-Call ESP32, specifically developed for applications in the smart agriculture domain. It features a robust backend built with the [succulent](https://github.com/firefly-cpp/succulent) Python framework, which serves as a web app for handling POST requests in JSON format. Additionally, the repository includes the entire ESP32 ecosystem, comprising both hardware schematics and the software that runs on ESP32 devices.
+This repository contains a collection of software codes for data collection using the LilyGO T-Call ESP32, specifically developed for applications in the [smart agriculture](https://github.com/firefly-cpp/smart-agriculture-datasets) domain. It features a robust backend built with the [succulent](https://github.com/firefly-cpp/succulent) Python framework, which serves as a web app for handling POST requests in JSON format. Additionally, the repository includes the entire ESP32 ecosystem, comprising both hardware schematics and the software that runs on ESP32 devices.
 
 ## succulent
 
