@@ -1,10 +1,15 @@
-# Data Collection with LilyGO T-Call in Smart Agriculture
+<h1 align="center">
+  Data Collection with LilyGO T-Call in Smart Agriculture
+</h1>
 
-## About
+<p align="center">
+  <a href="#-succulent">🌵 succulent</a> •
+  <a href="#-succulent-container-how-to-use">🐳 succulent Container (How to Use?)</a>
+</p>
 
 This repository contains a collection of software codes for data collection using the LilyGO T-Call ESP32, specifically developed for applications in the [smart agriculture](https://github.com/firefly-cpp/smart-agriculture-datasets) domain. It features a robust backend built with the [succulent](https://github.com/firefly-cpp/succulent) Python framework, which serves as a web app for handling POST requests in JSON format. Additionally, the repository includes the entire ESP32 ecosystem, comprising both hardware schematics and the software that runs on ESP32 devices.
 
-## succulent
+## 🌵 succulent
 
 [succulent](https://github.com/firefly-cpp/succulent) is a very lightweight framework for collecting POST requests. Based on Flask, it requires minimal hardware resources and can run practically anywhere. Users can easily modify the configuration.yml file to set up attributes that are then sent to the server or cloud. Installing [succulent](https://github.com/firefly-cpp/succulent) is straightforward and can be done using the pip Python tool or, preferably, by using a Docker image. After installation, users can modify the configuration.yml file and run the application. [succulent](https://github.com/firefly-cpp/succulent) also allows users to easily export data via a web browser and view the currently collected data in a web browser. For more information, please see the full documentation.
 
@@ -19,7 +24,7 @@ services:
   app:
     image: codeberg.org/firefly-cpp/succulent:v3
     ports:
-      - "8080:8080"
+      - 8080:8080
     volumes:
       - ./run.py:/succulent-app/run.py
       - ./configuration.yml:/succulent-app/configuration.yml
