@@ -24,7 +24,7 @@ const char gprsUser[] = "";
 const char gprsPass[] = "";
 
 // Your URL or IP of your web server / cloud
-const char server[] = "49.12.236.78";
+const char server[] = "YOUR_URL_OR_IP";
 
 // Setup port
 const int port = 8080;
