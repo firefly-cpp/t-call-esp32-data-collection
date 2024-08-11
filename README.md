@@ -1,3 +1,7 @@
+<p align="center">
+  <img width="300" src="images/SucculentDiagram.png" alt="Diagram">
+</p>
+
 <h1 align="center">
   Data Collection with LilyGO T-Call in Smart Agriculture
 </h1>
