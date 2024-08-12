@@ -26,7 +26,7 @@ version: '3.8'
 
 services:
   app:
-    image: codeberg.org/firefly-cpp/succulent:v3
+    image: codeberg.org/firefly-cpp/succulent:v6
     ports:
       - 8080:8080
     volumes:
@@ -73,6 +73,10 @@ docker compose up
 ```
 
 These steps also apply if you're using Podman instead of Docker.
+
+## ESP32
+
+The fully working code for running it on an ESP32 device is available in the following [file](https://codeberg.org/firefly-cpp/t-call-esp32-data-collection/src/branch/main/esp32/smart-agriculture.ino).
 
 ## Related repositories
 
