@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="300" src="images/SucculentDiagram.png" alt="Diagram">
+  <img width="500" src="images/SucculentDiagram.png" alt="Diagram">
 </p>
 
 <h1 align="center">
