@@ -4,4 +4,7 @@ data:
   - name: 'moisture'
   - name: 'light'
 results:
-  - enable: true # false by default | to see the results in web browser
+  - enable: true
+  - export: true
+timestamp: true
+password: 'passpass'

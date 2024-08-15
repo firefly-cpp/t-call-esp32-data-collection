@@ -10,7 +10,7 @@
 #define SerialMon Serial
 #define SerialAT Serial1
 
-#define TINY_GSM_RX_BUFFER 64
+#define TINY_GSM_RX_BUFFER 128  // Increased buffer size
 #define TINY_GSM_DEBUG SerialMon
 #define MODEM_RST            5
 #define MODEM_PWKEY          23
@@ -24,7 +24,7 @@ const char gprsUser[] = "";
 const char gprsPass[] = "";
 
 // Your URL or IP of your web server / cloud
-const char server[] = "YOUR_URL_OR_IP";
+const char server[] = "YOUR_IP_OR_URL";
 
 // Setup port
 const int port = 8080;
@@ -129,41 +129,25 @@ void loop() {
 void readSensors() {
     SerialMon.println("Reading sensors...");
 
-    // Add a delay to ensure sensors are ready | optional step
-    delay(20000); // Increased delay for sensor stabilization
+    delay(1000);
 
     // Read temperature and humidity | DHT22 sensor
     float temperature = dht.readTemperature();
     float humidity = dht.readHumidity();
 
-    // Debugging statements to check if the readings are valid | optional steps
-    if (isnan(temperature)) {
-        SerialMon.println("Failed to read temperature from DHT sensor");
-    } else {
-        SerialMon.print("Temperature: ");
-        SerialMon.println(temperature);
-    }
-
-    if (isnan(humidity)) {
-        SerialMon.println("Failed to read humidity from DHT sensor");
-    } else {
-        SerialMon.print("Humidity: ");
-        SerialMon.println(humidity);
-    }
-
     // Read light level
     float lightLevel = lightMeter.readLightLevel();
 
     // Print light level for debugging
-    SerialMon.print("Light: ");
-    SerialMon.println(lightLevel);
+    //SerialMon.print("Light: ");
+    //SerialMon.println(lightLevel);
 
     // Read moisture level
     int moisture = analogRead(MOISTURE_PIN);
 
     // Print moisture level
-    SerialMon.print("Moisture: ");
-    SerialMon.println(moisture);
+    //SerialMon.print("Moisture: ");
+    //SerialMon.println(moisture);
 
     // Check if any reads failed and exit early (to try again).
     if (isnan(temperature) || isnan(humidity) || isnan(lightLevel)) {
@@ -176,6 +160,10 @@ void readSensors() {
     sensorData.humidity = humidity;
     sensorData.lightLevel = lightLevel;
     sensorData.moisture = moisture;
+
+    // Check free heap memory for debugging
+    SerialMon.print("Free heap memory: ");
+    SerialMon.println(ESP.getFreeHeap());
 }
 
 void httpPostRequest() {
@@ -184,7 +172,11 @@ void httpPostRequest() {
 
     if (client.connect(server, port)) {
         // Create the JSON data string using the stored sensor values for succulent framework
-        String jsonData = "{\"temperature\":" + String(sensorData.temperature, 2) + ",\"humidity\":" + String(sensorData.humidity, 2) + ",\"moisture\":" + String(sensorData.moisture) + ",\"light\":" + String(sensorData.lightLevel, 2) + "}";
+        char jsonData[192]; // Ensure the array is large enough to hold the entire JSON string !!!
+        snprintf(jsonData, sizeof(jsonData),
+                 "{\"temperature\":%.2f,\"humidity\":%.2f,\"moisture\":%d,\"light\":%.2f,\"password\":\"%s\"}",
+                 sensorData.temperature, sensorData.humidity,
+                 sensorData.moisture, sensorData.lightLevel, "passpass");
 
         client.println("POST /measure HTTP/1.1");
         client.print("Host: ");
@@ -192,7 +184,7 @@ void httpPostRequest() {
         client.println("User-Agent: TTGO-TCALL/1.0");
         client.println("Content-Type: application/json");
         client.print("Content-Length: ");
-        client.println(jsonData.length());
+        client.println(strlen(jsonData));
         client.println();
         client.println(jsonData);
 
@@ -203,10 +195,13 @@ void httpPostRequest() {
             while (client.available()) {
                 char c = client.read();
                 SerialMon.print(c);
-                timeout = millis();
+                timeout = millis(); // Reset timeout if data is available
             }
         }
+    } else {
+        SerialMon.println("Connection failed");
     }
+
     client.stop();
     SerialMon.println("Server Disconnected");
 }
