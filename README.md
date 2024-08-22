@@ -76,6 +76,10 @@ These steps also apply if you're using Podman instead of Docker.
 
 ## ESP32
 
+### Hardware schematics
+
+### Source code
+
 The fully working code for running it on an ESP32 device is available in the following [file](https://codeberg.org/firefly-cpp/t-call-esp32-data-collection/src/branch/main/esp32/smart-agriculture.ino).
 
 ## Related repositories
