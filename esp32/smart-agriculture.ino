@@ -24,7 +24,7 @@ const char gprsUser[] = "";
 const char gprsPass[] = "";
 
 // Your URL or IP of your web server / cloud
-const char server[] = "YOUR_IP_OR_URL";
+const char server[] = "YOUR_URL_OR_IP";
 
 // Setup port
 const int port = 8080;
@@ -115,7 +115,7 @@ void loop() {
         lastUpdateTime = millis();
         if (!modem.isNetworkConnected()) {
             SerialMon.println("Network disconnected, attempting to reconnect...");
-            connectGPRS();
+            reconnectGPRS();
         }
         if (modem.isNetworkConnected()) {
             readSensors();
@@ -171,8 +171,8 @@ void httpPostRequest() {
     SerialMon.println("Performing HTTP POST request...");
 
     if (client.connect(server, port)) {
-        // Create the JSON data string using the stored sensor values for succulent framework
-        char jsonData[192]; // Ensure the array is large enough to hold the entire JSON string !!!
+        // Create the JSON data string using the stored sensor values
+        char jsonData[192]; // Ensure the array is large enough to hold the entire JSON string
         snprintf(jsonData, sizeof(jsonData),
                  "{\"temperature\":%.2f,\"humidity\":%.2f,\"moisture\":%d,\"light\":%.2f,\"password\":\"%s\"}",
                  sensorData.temperature, sensorData.humidity,
@@ -200,6 +200,7 @@ void httpPostRequest() {
         }
     } else {
         SerialMon.println("Connection failed");
+        reconnectGPRS();  // Attempt to reconnect if the client connection fails
     }
 
     client.stop();
@@ -218,5 +219,36 @@ void connectGPRS() {
 
     if (modem.isGprsConnected()) {
         SerialMon.println("GPRS connected");
+    }
+}
+
+void reconnectGPRS() {
+    int retryCount = 0;
+    const int maxRetries = 5;  // Set a reasonable number of retries
+
+    while (retryCount < maxRetries && !modem.isGprsConnected()) {
+        SerialMon.print("Attempting to reconnect to GPRS (attempt ");
+        SerialMon.print(retryCount + 1);
+        SerialMon.println(")...");
+
+        modem.gprsDisconnect();  // Disconnect any previous connection
+        delay(1000);  // Small delay before reconnecting
+
+        modem.init();  // Reinitialize the modem
+        connectGPRS();
+
+        if (modem.isGprsConnected()) {
+            SerialMon.println("Reconnected to network successfully.");
+            break;
+        } else {
+            SerialMon.println("Reconnect attempt failed.");
+            retryCount++;
+            delay(5000);  // Wait before retrying
+        }
+    }
+
+    if (!modem.isGprsConnected()) {
+        SerialMon.println("Failed to reconnect after multiple attempts. Restarting ESP32...");
+        ESP.restart();  // Reset the ESP32
     }
 }
