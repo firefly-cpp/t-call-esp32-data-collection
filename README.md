@@ -91,6 +91,22 @@ The fully working code for running it on an ESP32 device is available in the fol
 
 [1] [smart-agriculture-datasets](https://github.com/firefly-cpp/smart-agriculture-datasets)
 
+## Citation
+
+If you use this project in your research, please cite it using the following BibTeX entry:
+
+```bibtex
+@software{iztok_2024_data_collection,
+  author = {Fister Jr., Iztok},
+  title = {Data Collection with LilyGO T-Call in Smart Agriculture},
+  year = {2024},
+  url = {https://codeberg.org/firefly-cpp/t-call-esp32-data-collection},
+  version = {1.0.0},
+  license = {Attribution-ShareAlike 4.0 International},
+  abstract = {This repository contains a collection of software codes for data collection using the LilyGO T-Call ESP32, specifically developed for applications in the smart agriculture domain. It features a robust backend built with the succulent Python framework, which serves as a web app for handling POST requests in JSON format. Additionally, the repository includes the entire ESP32 ecosystem, comprising both hardware schematics and the software that runs on ESP32 devices.}
+}
+```
+
 ## Disclaimer
 This software is provided as-is, and there are no guarantees that it fits your purposes or that it is bug-free. Use it at your own risk!
 

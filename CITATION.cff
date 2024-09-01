@@ -1,0 +1,41 @@
+cff-version: 1.2.0
+message: "Please cite this repository if you use it in your work."
+title: "Data Collection with LilyGO T-Call in Smart Agriculture"
+abstract: |
+  This repository contains a collection of software codes for data collection using the LilyGO T-Call ESP32, specifically developed for applications in the smart agriculture domain. It features a robust backend built with the succulent Python framework, which serves as a web app for handling POST requests in JSON format. Additionally, the repository includes the entire ESP32 ecosystem, comprising both hardware schematics and the software that runs on ESP32 devices.
+authors:
+  - family-names: Fister Jr.
+    given-names: Iztok
+    email: iztok@iztok.space
+    orcid: 0000-0002-6418-1272
+repository-code: "https://codeberg.org/firefly-cpp/t-call-esp32-data-collection"
+keywords:
+  - Smart Agriculture
+  - Data Collection
+  - LilyGO T-Call ESP32
+  - ESP32
+  - Python
+  - C
+  - C++
+license: "Attribution-ShareAlike 4.0 International"
+repository-artifact: "https://codeberg.org/firefly-cpp/t-call-esp32-data-collection"
+repository: "https://codeberg.org/firefly-cpp/t-call-esp32-data-collection"
+version: 1.0.0
+contact:
+  - family-names: Fister Jr.
+    given-names: Iztok
+    email: iztok@iztok.space
+    orcid: 0000-0002-6418-1272
+languages:
+  - Python
+  - C
+  - C++
+preferred-citation:
+  type: software
+  title: "Data Collection with LilyGO T-Call in Smart Agriculture"
+  authors:
+    - family-names: Fister Jr.
+      given-names: Iztok
+  version: 1.0.0
+  license: "Attribution-ShareAlike 4.0 International"
+  repository-code: "https://codeberg.org/firefly-cpp/t-call-esp32-data-collection"
