@@ -57,7 +57,7 @@ DHT dht(DHTPIN, DHTTYPE);
 BH1750 lightMeter;
 
 // Define the moisture sensor pin
-#define MOISTURE_PIN 34
+#define MOISTURE_PIN 35
 
 unsigned long lastUpdateTime = 0;
 const unsigned long updateInterval = 10L * 1000L; // Increased interval to 10 seconds
@@ -129,7 +129,7 @@ void loop() {
 void readSensors() {
     SerialMon.println("Reading sensors...");
 
-    delay(1000);
+    delay(1000); // Delay before starting sensor readings to give sensors time to stabilize
 
     // Read temperature and humidity | DHT22 sensor
     float temperature = dht.readTemperature();
@@ -142,8 +142,14 @@ void readSensors() {
     //SerialMon.print("Light: ");
     //SerialMon.println(lightLevel);
 
-    // Read moisture level
-    int moisture = analogRead(MOISTURE_PIN);
+    // Read moisture level with a delay and averaging multiple readings
+    int moistureSum = 0;
+    int numReadings = 10;  // Take 10 readings for averaging
+    for (int i = 0; i < numReadings; i++) {
+        moistureSum += analogRead(MOISTURE_PIN);
+        delay(50);  // Short delay between each reading to give time for the sensor to stabilize
+    }
+    int moisture = moistureSum / numReadings;  // Calculate average moisture level
 
     // Print moisture level
     //SerialMon.print("Moisture: ");
