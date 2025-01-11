@@ -8,7 +8,7 @@ authors:
     given-names: Iztok
     email: iztok@iztok.space
     orcid: 0000-0002-6418-1272
-repository-code: "https://codeberg.org/firefly-cpp/t-call-esp32-data-collection"
+repository-code: "https://github.com/firefly-cpp/t-call-esp32-data-collection"
 keywords:
   - Smart Agriculture
   - Data Collection
@@ -18,8 +18,8 @@ keywords:
   - C
   - C++
 license: "Attribution-ShareAlike 4.0 International"
-repository-artifact: "https://codeberg.org/firefly-cpp/t-call-esp32-data-collection"
-repository: "https://codeberg.org/firefly-cpp/t-call-esp32-data-collection"
+repository-artifact: "https://github.com/firefly-cpp/t-call-esp32-data-collection"
+repository: "https://github.com/firefly-cpp/t-call-esp32-data-collection"
 version: 1.0.0
 contact:
   - family-names: Fister Jr.
@@ -38,4 +38,4 @@ preferred-citation:
       given-names: Iztok
   version: 1.0.0
   license: "Attribution-ShareAlike 4.0 International"
-  repository-code: "https://codeberg.org/firefly-cpp/t-call-esp32-data-collection"
+  repository-code: "https://github.com/firefly-cpp/t-call-esp32-data-collection"
